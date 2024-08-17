@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #timer {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        #preTimer {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Happy Birthday, [Ms Rabia Salman]!</h1>
+    </header>
+    <main>
+        <section id="introduction">
+            <p>On this special day, I want you to know how much you mean to me. You bring so much joy and love into my life, and I am so grateful for you. I’m so grateful for every moment we’ve shared and for all the memories we’ve yet to create. I hope your birthday is filled with all the joy and love that you bring into my life. Here’s to celebrating you and the incredible person you are.
+
+                May this year bring you happiness, success, and everything your heart desires. I look forward to continuing this journey together, creating beautiful memories and facing every adventure with you by my side.
+                
+                Happy Birthday, my love!
+                
+                With all my heart,
+                Salman.</p>
+            <img src="IMG-20210923-WA0010.jpg" alt="be happy be safe and be loyal">
+            <p>See below there is something more for my princess!</p>
+            <a href="creative.html" id="treasureLink" class="hidden" target="_blank">Touch with your beautiful finger to open</a>
+            <h2>Aa tujhe in bahu mai bhar ke, aur bhi karlu mai kareeb, tu juda ho tou lage hai aata jata har pal ajeb!</h2>
+            <video width="300" controls>
+                <source src="VID_38921231_231016_848.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+        <footer>
+            <p>Dear lobs, Salman loves you sooo much.</p>
+        </footer>
+    </main>
+    <div id="preTimer"></div>
+    <div id="timer" class="hidden"></div>
+    <audio id="celebration-sound" src="Humko_Tere_Bina_Jeena_Toh_Shikha___Slowed_Reverb_Song___Chale_Jana_Phir___Ahmed_Abir___Sad_Song(128k).m4a"></audio>
+
+    <script>
+        // Set the unlock time for 1 minute from page load
+        const unlockDuration = 1 * 60 * 1000; // 1 minute in milliseconds
+        const unlockTime = new Date().getTime() + unlockDuration;
+
+        function updatePreTimer() {
+            const now = new Date().getTime();
+            const timeLeft = unlockTime - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById('preTimer').textContent = "the link will present shortly ";
+                document.getElementById('timer').classList.remove('hidden');
+                clearInterval(preTimerInterval);
+                startTimer();
+            } else {
+                const minutes = Math.floor(timeLeft / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                document.getElementById('preTimer').textContent = `Time left: ${minutes}m ${seconds}s`;
+            }
+        }
+
+        function startTimer() {
+            function updateTimer() {
+                const now = new Date().getTime();
+                const timeLeft = unlockTime - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById('timer').textContent = "The link is in the middle,vuch meyano echo seth";
+                    document.getElementById('treasureLink').classList.remove('hidden');
+                    document.getElementById('celebration-sound').play();
+                    // Add fireworks effect here
+                    clearInterval(timerInterval);
+                } else {
+                    const minutes = Math.floor(timeLeft / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    document.getElementById('timer').textContent = `Time left: ${minutes}m ${seconds}s`;
+                }
+            }
+
+            const timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); // Initialize immediately
+        }
+
+        const preTimerInterval = setInterval(updatePreTimer, 1000);
+        updatePreTimer(); // Initialize immediately
+    </script>
+</body>
+</html>
